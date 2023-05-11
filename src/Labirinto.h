@@ -12,12 +12,13 @@ char mapAux[100][100];
 	} Matriz;
 	
 	typedef struct Mapa{
-  Matriz Matrizes[QuantMatriz];
+  Matriz Matrizes;
 	} Mapa;
 			
 void Initiation(Mapa *mat);
 int GenerateMatrix(int n,Mapa *mat);
 void PrintMatrix(int n,Mapa *mat);
+void AtualizarMatriz(int n,Mapa *mat);
 void ReadMatriz(Mapa *mat);
 int Random(int n,Mapa *mat);
  
