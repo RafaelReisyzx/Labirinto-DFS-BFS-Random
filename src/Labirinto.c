@@ -17,7 +17,7 @@ void Initiation(Mapa *mat)
 			scanf("%d", &n);
 			GenerateMatrix(n,mat);
       for(;;){
-        	PrintMatrix(n,mat);
+        PrintMatrix(n,mat);
       	printf("Qual Caminhamento de matriz deseja testar?\n");
       	printf("1-Random\n");
 	      printf("2-Bfs\n");
@@ -162,7 +162,7 @@ void ReadMatriz(Mapa *mat) {
   
 }
 
-void AtualizaMatriz(int n,Mapa *mat){
+void AtualizarMatriz(int n,Mapa *mat){
 	int i,j;
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
@@ -175,9 +175,12 @@ void AtualizaMatriz(int n,Mapa *mat){
 
 int Random(int n,Mapa *mat)
 {
+	clock_t start,end;
+	double tempo;
 	int i=0,j=0,r=0,x=0,k=0,data=0,a,c,b,ok=0,opcao,visualizacao=0;
 	int Direita=0,Esquerda=0,Baixo=0,Cima=0,DiagonalEsquerdaSuperior=0,DiagonalDireitaSuperior=0,DiagonalEsquerdaInferior=0,DiagonalDireitaInferior=0;
-		AtualizaMatriz(n,mat);
+	AtualizaMatriz(n,mat);
+	start = clock();
 	for(;;)
 	{
 	
@@ -190,7 +193,7 @@ int Random(int n,Mapa *mat)
 
     	}else if(mat->Matrizes.mapAux[i][j]=='?'){
       
-      
+        end =clock;
 
 	   }else{
       
