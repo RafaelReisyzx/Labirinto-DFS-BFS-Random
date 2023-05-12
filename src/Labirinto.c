@@ -1,78 +1,73 @@
 #include "Labirinto.h"
 
-void Initiation(Mapa *mat)
+int Initiation(Mapa *mat)
 {
-
-	int k,n=0,opcao;
+	int n=0,opcao;
+	
 
 	printf("\n******************************************************\n");	
 	printf("-Menu-\n");
-	printf("1-Gerar novas matrizes dentro de um arquivo (input.data)\n");
-	printf("2-Ler matrizes de um arquivo (input.data)\n");
+	printf("1-Gerar nova matriz dentro de um arquivo (input.data)\n");
+	printf("2-Ler matriz de um arquivo (input.data)\n");
 	printf("******************************************************\n");
 	scanf("%d", &opcao);
 	printf("\n");
-		if(opcao == 1){
-			printf("Digite o tamanho da matriz quadrada: ");
-			scanf("%d", &n);
-			GenerateMatrix(n,mat);
-      for(;;){
+	if(opcao == 1){
+	printf("Digite o tamanho da matriz quadrada: ");
+	scanf("%d", &n);
+	GenerateMatrix(n,mat);
+    for(;;)
+	{
         PrintMatrix(n,mat);
       	printf("Qual Caminhamento de matriz deseja testar?\n");
       	printf("1-Random\n");
-	      printf("2-Bfs\n");
+	    printf("2-Bfs\n");
         printf("3-Dfs\n");
-       printf("4-Sair\n");
-      scanf("%d", &opcao);
+        printf("4-Sair\n");
+        scanf("%d", &opcao);
 	    printf("\n");
-       if(opcao == 1){
-          Random(n,mat);	
+       if(opcao==1){
+      Random(n,mat);
+	
        }else if(opcao == 2){		
-          Bfs(n,mat);
+       // Bfs
        }else if(opcao == 3){		
-         Dfs(n,mat);
+       // Dfs
        }else{
          return 0;
-       }
-        
-      }     
-  
+       }       
+      }      
 		}		
 		else if(opcao == 2){			
-		ReadMatriz(mat);		
-        
-      for(;;){
-      PrintMatrix(n,mat);
-      printf("Qual Caminhamento de matriz deseja testar?\n");
-      printf("1-Random\n");
+		ReadMatriz(mat);		       
+      for(;;)
+	{
+        PrintMatrix(n,mat);
+      	printf("Qual Caminhamento de matriz deseja testar?\n");
+      	printf("1-Random\n");
 	    printf("2-Bfs\n");
-      printf("3-Dfs\n");
-      printf("4-Sair\n");
-      scanf("%d", &opcao);
+        printf("3-Dfs\n");
+        printf("4-Sair\n");
+        scanf("%d", &opcao);
 	    printf("\n");
-       if(opcao == 1){
-          Random(n,mat);	
+       if(opcao==1){
+        Random(n,mat);	
        }else if(opcao == 2){		
-          Bfs(n,mat);
+       // Bfs
        }else if(opcao == 3){		
-         Dfs(n,mat);
+       // Dfs
        }else{
          return 0;
-       }
-        
-      }  
-		}
-		else if(opcao == 0){	
-      return 0;
-		}
-		else{
+       }       
+      }      
+		}else{
 		printf("\nOpcao invalida\n");
 		}
 }
 
 int GenerateMatrix(int n,Mapa *mat){
 	int i,j,data=0,data2=0;
-	FILE *f = fopen("dataset/input.data", "a");
+	FILE *f = fopen("input.txt", "a");
     if (f == NULL) {
         printf("Erro ao abrir o arquivo para escrita\n");
         exit(EXIT_FAILURE);
@@ -88,20 +83,20 @@ int GenerateMatrix(int n,Mapa *mat){
 		}else if ((data > 10) && (data < 16)){
 			mat->Matrizes.map[i][j] = '*';
 			 fprintf(f, "%c ", mat->Matrizes.map[i][j]);
-		} else
-		{
-		
-			}else{
+		} else{
 			mat->Matrizes.map[i][j] = '#';
 			 fprintf(f, "%c ", mat->Matrizes.map[i][j]);
 		}
-		}
+		
        
 		}
 		 fprintf(f, "\n");
 		
 	}
-	fprintf(f, "\n");
+	data=0;
+    data = rand() % n + 1;
+    data2 = rand() % n + 1;
+   	mat->Matrizes.map[data][data2] ='?';
 
     fclose(f);
  
@@ -122,7 +117,7 @@ void PrintMatrix(int n,Mapa *mat){
 
 
 void ReadMatriz(Mapa *mat) {
-    FILE *f = fopen("dataset/input.data", "r");
+    FILE *f = fopen("input.txt", "r");
     if (f == NULL) {
         printf("Erro ao abrir o arquivo para leitura\n");
         exit(EXIT_FAILURE);
@@ -140,7 +135,7 @@ void ReadMatriz(Mapa *mat) {
                     c = fgetc(f);
                 }
                 if (c == '#') {
-                    if (i == 0 && j == 0 && k == 0) {
+                    if (i == 0 && j == 0) {
                         int data = rand() % 20;
                         if (data <= 10) {     
                             mat->Matrizes.map[i][j] ='1';
@@ -166,7 +161,7 @@ void AtualizarMatriz(int n,Mapa *mat){
 	int i,j;
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
-			mat->Matrizes.mapAux[i][j]=Matrizes.map[i][j];
+			mat->Matrizes.mapAux[i][j]=mat->Matrizes.map[i][j];
 		}
 	}
 
@@ -175,29 +170,50 @@ void AtualizarMatriz(int n,Mapa *mat){
 
 int Random(int n,Mapa *mat)
 {
-	clock_t start,end;
-	double tempo;
-	int i=0,j=0,r=0,x=0,k=0,data=0,a,c,b,ok=0,opcao,visualizacao=0;
+
+	int i=0,j=0,r=0,x=0,k=0,data=0,a,c,b,ok=0,opcao,visualizacao=0,iteracao = 0;
 	int Direita=0,Esquerda=0,Baixo=0,Cima=0,DiagonalEsquerdaSuperior=0,DiagonalDireitaSuperior=0,DiagonalEsquerdaInferior=0,DiagonalDireitaInferior=0;
-	AtualizaMatriz(n,mat);
-	start = clock();
+    clock_t inicio, fim;
+    double tempo_total = 0,desvio_padrao = 0,media=0;
+    double *tempos_execucao = NULL;
+	AtualizarMatriz(n,mat);
 	for(;;)
 	{
-	
+		
+	inicio = clock();
 	//1Â° Etapa Verificador de casa
 	
 		if(mat->Matrizes.mapAux[i][j]=='*'){	 
-      mat->Matrizes.mapAux[i][j]=='1'
-    		i=0;
+      mat->Matrizes.mapAux[i][j]=='1';
+    	i=0;
         j=0;      
 
     	}else if(mat->Matrizes.mapAux[i][j]=='?'){
       
-        end =clock;
+     // Calcula a média do tempo de execução
+   media = tempo_total / (iteracao + 1);
 
-	   }else{
-      
+    // Calcula o desvio padrão
+    for (i = 0; i <= iteracao; i++) {
+        desvio_padrao += pow(tempos_execucao[i] - media, 2);
+    }
+    desvio_padrao = sqrt(desvio_padrao / (iteracao + 1));
+
+    printf("Tempo médio de execução: %lf segundos\n", media);
+    printf("Desvio padrão: %lf segundos\n", desvio_padrao);
+
+    // Libera a memória alocada para o vetor de tempos de execução
+    free(tempos_execucao);
+
 	   }
+	   		  fim = clock();
+        double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+        // Realoca o vetor para armazenar o tempo de execução atual
+        tempos_execucao = realloc(tempos_execucao, (iteracao + 1) * sizeof(double));
+        tempos_execucao[iteracao] = tempo_execucao;
+        tempo_total += tempo_execucao;
+        
 
 	//2Â° EtapaDemarcar Paredes
 	//cima
@@ -299,27 +315,17 @@ int Random(int n,Mapa *mat)
 		DiagonalDireitaInferior=0;
 		DiagonalEsquerdaInferior=0;
 		r=0;
+		
 
+         iteracao++;
 
 	}
 	
 	
 		}
 	
-	
-}
-int Bfs(int n,Mapa *mat)
-{
-  //Em construção
-}
-int Dfs(int n,Mapa *mat)
-{
-    //Em construção
-}
-  
-  
-  
-  
-  
-  
 
+  
+  
+  
+  
