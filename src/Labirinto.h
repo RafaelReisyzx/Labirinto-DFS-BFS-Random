@@ -5,6 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <math.h>
 
 typedef struct Matriz{
 char map[100][100];
@@ -15,7 +16,7 @@ char mapAux[100][100];
   Matriz Matrizes;
 	} Mapa;
 			
-void Initiation(Mapa *mat);
+int Initiation(Mapa *mat);
 int GenerateMatrix(int n,Mapa *mat);
 void PrintMatrix(int n,Mapa *mat);
 void AtualizarMatriz(int n,Mapa *mat);
