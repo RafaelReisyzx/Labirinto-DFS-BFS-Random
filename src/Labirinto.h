@@ -2,14 +2,17 @@
 #define LABIRINTO_H
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <time.h>
+#include <locale.h>
 #include <unistd.h>
 #include <ctype.h>
 #include <math.h>
 
 typedef struct Matriz{
 char map[100][100];
-char mapAux[100][100];	
+char mapAux[100][100];
+int passos;	
 	} Matriz;
 	
 	typedef struct Mapa{
