@@ -11,8 +11,8 @@
 
 typedef struct Matriz{
 char map[100][100];
-char mapAux[100][100];
 int passos;	
+int tam;
 	} Matriz;
 	
 	typedef struct Mapa{
@@ -20,10 +20,10 @@ int passos;
 	} Mapa;
 			
 int Initiation(Mapa *mat);
-int GenerateMatrix(int n,Mapa *mat);
-void PrintMatrix(int n,Mapa *mat);
-void AtualizarMatriz(int n,Mapa *mat);
-void ReadMatriz(Mapa *mat);
-int Random(int n,Mapa *mat);
+int GenerateMatrix(Mapa *mat);
+void PrintMatrix(Mapa *mat);
+void AtualizarMatriz(Mapa *mat);
+int ReadMatriz(Mapa *mat);
+int Random(Mapa *mat);
  
 #endif
