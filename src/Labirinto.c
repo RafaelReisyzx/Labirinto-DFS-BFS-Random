@@ -2,7 +2,7 @@
 
 int Initiation(Mapa *mat)
 {
-	int i, n=0,opcao;
+	int n=0,opcao;
 	clock_t start, end;
     double cpu_time_used;
 	
@@ -33,7 +33,7 @@ int Initiation(Mapa *mat)
        if(opcao==1){
        	start = clock();
 
-		Random(mat); // Chama a função Random
+		Random(mat); // Chama a funÃ§Ã£o Random
 		end = clock();
 		 cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
         printf("\nTempo de execucao: %.6f segundos\n", cpu_time_used);
@@ -63,7 +63,7 @@ int Initiation(Mapa *mat)
 
 	 	start = clock();
 
-		Random(mat); // Chama a função Random
+		Random(mat); // Chama a funÃ§Ã£o Random
 		end = clock();
 		 cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
         printf("\nTempo de execucao: %.6f segundos\n", cpu_time_used);
@@ -79,10 +79,11 @@ int Initiation(Mapa *mat)
 		}else{
 		printf("\nOpcao invalida\n");
 		}
+		return 0;
 }
 
 int GenerateMatrix(Mapa* mat) {
-    int i, j, data = 0, data2 = 0,Row,Col, ok=0,n=0;
+    int i, j, data = 0,Row,Col, ok=0,n=0;
     remove("dataset/input.data");
     n=mat->Matrizes.tam;
     FILE* f = fopen("input.txt", "a");
@@ -94,7 +95,7 @@ int GenerateMatrix(Mapa* mat) {
 
      while(ok<1)
      {
-    // Gerar posição aleatória para o caractere "?"
+    // Gerar posiÃ§Ã£o aleatÃ³ria para o caractere "?"
     Row = rand() % n;
     Col = rand() % n;
     ok=1;
@@ -188,7 +189,7 @@ mat->Matrizes.tam=linhas;
 int Random(Mapa *mat)
 {
      
-	int i=0,j=0,r=0,x=0,k=0,data=0,a,c,b,ok=0,opcao,visualizacao=0,n;
+	int i=0,j=0,r=0,data=0,n;
 	int Direita=0,Esquerda=0,Baixo=0,Cima=0,DiagonalEsquerdaSuperior=0,DiagonalDireitaSuperior=0,DiagonalEsquerdaInferior=0,DiagonalDireitaInferior=0;
     
 	n=mat->Matrizes.tam;
@@ -197,10 +198,10 @@ int Random(Mapa *mat)
 	{	
 	 
 
-	//1Â° Etapa Verificador de casa
+	//1Ã‚Â° Etapa Verificador de casa
 	
 		if(mat->Matrizes.map[i][j]=='*'){	 
-      mat->Matrizes.map[i][j]=='1';
+      mat->Matrizes.map[i][j]='1';
     	i=0;
         j=0;      
 
@@ -210,7 +211,7 @@ int Random(Mapa *mat)
 
 }
 
-	//2Â° EtapaDemarcar Paredes
+	//2Ã‚Â° EtapaDemarcar Paredes
 	//cima
 	if(mat->Matrizes.map[i-1][j]=='#')
 	{
@@ -251,7 +252,7 @@ int Random(Mapa *mat)
 	{
 		DiagonalDireitaInferior=-1;
 	}
-//3Â° Etapa Escolher caminho possivel de caminhar
+//3Ã‚Â° Etapa Escolher caminho possivel de caminhar
 	for(r=0;r<1;)
 	{
 	data = rand()%8;
@@ -274,7 +275,7 @@ int Random(Mapa *mat)
 	r=1;	
 	}	
    }
-   //4Â° Etapa Caminhar
+   //4Ã‚Â° Etapa Caminhar
 	
 	if(data==1)
 	{
@@ -325,7 +326,7 @@ int Random(Mapa *mat)
  
 	}
 
-	
+	return 0;
 		}
 	
 
