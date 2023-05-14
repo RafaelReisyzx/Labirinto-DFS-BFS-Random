@@ -83,7 +83,7 @@ int Initiation(Mapa *mat)
 
 int GenerateMatrix(Mapa* mat) {
     int i, j, data = 0, data2 = 0,Row,Col, ok=0,n=0;
-    remove("input.txt");
+    remove("dataset/input.data");
     n=mat->Matrizes.tam;
     FILE* f = fopen("input.txt", "a");
     if (f == NULL) {
@@ -149,7 +149,7 @@ void PrintMatrix(Mapa *mat){
 
 
 int ReadMatriz(Mapa *mat) {
-    FILE *f = fopen("input.txt", "r");
+    FILE *f = fopen("dataset/input.data", "r");
     if (f == NULL) {
         printf("Erro ao abrir o arquivo para leitura\n");
         exit(EXIT_FAILURE);
