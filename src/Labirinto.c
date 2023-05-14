@@ -3,6 +3,8 @@
 int Initiation(Mapa *mat)
 {
 	int i, n=0,opcao;
+	clock_t start, end;
+    double cpu_time_used;
 	
 
 	printf("\n******************************************************\n");	
@@ -15,10 +17,12 @@ int Initiation(Mapa *mat)
 	if(opcao == 1){
 	printf("Digite o tamanho da matriz quadrada: ");
 	scanf("%d", &n);
-	GenerateMatrix(n,mat);
+	mat->Matrizes.tam=n;
+	GenerateMatrix(mat);
+	PrintMatrix(mat);
     for(;;)
 	{
-        PrintMatrix(n,mat);
+        
       	printf("\nQual Caminhamento de matriz deseja testar?\n");
       	printf("1-Random\n");
 	    printf("2-Bfs\n");
@@ -27,8 +31,12 @@ int Initiation(Mapa *mat)
         scanf("%d", &opcao);
 	    printf("\n");
        if(opcao==1){
+       	start = clock();
 
-		Random(n,mat); // Chama a função Random
+		Random(mat); // Chama a função Random
+		end = clock();
+		 cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+        printf("\nTempo de execucao: %.6f segundos\n", cpu_time_used);
 
        }else if(opcao == 2){		
        // Bfs
@@ -43,8 +51,8 @@ int Initiation(Mapa *mat)
 		ReadMatriz(mat);		       
       for(;;)
 	{
-        PrintMatrix(n,mat);
-      	printf("Qual Caminhamento de matriz deseja testar?\n");
+      
+      	printf("\nQual Caminhamento de matriz deseja testar?\n");
       	printf("1-Random\n");
 	    printf("2-Bfs\n");
         printf("3-Dfs\n");
@@ -53,7 +61,12 @@ int Initiation(Mapa *mat)
 	    printf("\n");
        if(opcao==1){
 
-		Random(n,mat); // Chama a função Random
+	 	start = clock();
+
+		Random(mat); // Chama a função Random
+		end = clock();
+		 cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+        printf("\nTempo de execucao: %.6f segundos\n", cpu_time_used);
 		
        }else if(opcao == 2){		
        // Bfs
@@ -68,9 +81,10 @@ int Initiation(Mapa *mat)
 		}
 }
 
-int GenerateMatrix(int n, Mapa* mat) {
-    int i, j, data = 0, data2 = 0,Row,Col, ok=0;
+int GenerateMatrix(Mapa* mat) {
+    int i, j, data = 0, data2 = 0,Row,Col, ok=0,n=0;
     remove("input.txt");
+    n=mat->Matrizes.tam;
     FILE* f = fopen("input.txt", "a");
     if (f == NULL) {
         printf("Erro ao abrir o arquivo para escrita\n");
@@ -121,8 +135,9 @@ int GenerateMatrix(int n, Mapa* mat) {
     return 0;
 }
 
-void PrintMatrix(int n,Mapa *mat){
-	int i,j;
+void PrintMatrix(Mapa *mat){
+	int i,j,n;
+	n=mat->Matrizes.tam;
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
 			printf("%c ", mat->Matrizes.map[i][j]);
@@ -133,7 +148,7 @@ void PrintMatrix(int n,Mapa *mat){
 }
 
 
-void ReadMatriz(Mapa *mat) {
+int ReadMatriz(Mapa *mat) {
     FILE *f = fopen("input.txt", "r");
     if (f == NULL) {
         printf("Erro ao abrir o arquivo para leitura\n");
@@ -153,38 +168,30 @@ void ReadMatriz(Mapa *mat) {
                 }
                 if (c == '#') {
                     if (i == 0 && j == 0){  
-                            mat->Matrizes.map[i][j] ='1';
+                           c ='1';
                     }
-                } else {
-                    mat->Matrizes.map[i][j] = c;
-                }
+                } 
+         mat->Matrizes.map[i][j] = c;
+
             }
       
     }
 
-
+mat->Matrizes.tam=linhas;
     fclose(f);
+     PrintMatrix(mat);
+    return 0;
   
 }
 
-void AtualizarMatriz(int n,Mapa *mat){
-	int i,j;
-	for(i = 0; i < n; i++){
-		for(j = 0; j < n; j++){
-			mat->Matrizes.mapAux[i][j]=mat->Matrizes.map[i][j];
-		}
-	}
 
-}
-
-
-int Random(int n,Mapa *mat)
+int Random(Mapa *mat)
 {
      
-	int i=0,j=0,r=0,x=0,k=0,data=0,a,c,b,ok=0,opcao,visualizacao=0;
+	int i=0,j=0,r=0,x=0,k=0,data=0,a,c,b,ok=0,opcao,visualizacao=0,n;
 	int Direita=0,Esquerda=0,Baixo=0,Cima=0,DiagonalEsquerdaSuperior=0,DiagonalDireitaSuperior=0,DiagonalEsquerdaInferior=0,DiagonalDireitaInferior=0;
     
-	AtualizarMatriz(n,mat);
+	n=mat->Matrizes.tam;
 	mat->Matrizes.passos=0;
 	for(;;)
 	{	
@@ -192,55 +199,55 @@ int Random(int n,Mapa *mat)
 
 	//1Â° Etapa Verificador de casa
 	
-		if(mat->Matrizes.mapAux[i][j]=='*'){	 
-      mat->Matrizes.mapAux[i][j]=='1';
+		if(mat->Matrizes.map[i][j]=='*'){	 
+      mat->Matrizes.map[i][j]=='1';
     	i=0;
         j=0;      
 
-    	}else if(mat->Matrizes.mapAux[i][j]=='?'){	
-    
+    	}else if(mat->Matrizes.map[i][j]=='?'){	
+    printf("\nQuantidade de Passos:%d",mat->Matrizes.passos);
     break;
 
 }
 
 	//2Â° EtapaDemarcar Paredes
 	//cima
-	if(mat->Matrizes.mapAux[i-1][j]=='#')
+	if(mat->Matrizes.map[i-1][j]=='#')
 	{
 		Cima=-1;
 	}
 	//baixo
-	if(mat->Matrizes.mapAux[i+1][j]=='#')
+	if(mat->Matrizes.map[i+1][j]=='#')
 	{
 		Baixo=-1;
 	}
 	//esquerda
-	if(mat->Matrizes.mapAux[i][j-1]=='#')
+	if(mat->Matrizes.map[i][j-1]=='#')
 	{
 		Esquerda=-1;
 	}
 	//direita
-	if(mat->Matrizes.mapAux[i][j+1]=='#')
+	if(mat->Matrizes.map[i][j+1]=='#')
 	{
 		Direita=-1;
 	}
 	//diagonal superior esquerda
-	if(mat->Matrizes.mapAux[i-1][j-1]=='#')
+	if(mat->Matrizes.map[i-1][j-1]=='#')
 	{
 		DiagonalEsquerdaSuperior=-1;
 	}
 	//diagonal superior direita
-	if(mat->Matrizes.mapAux[i-1][j+1]=='#')
+	if(mat->Matrizes.map[i-1][j+1]=='#')
 	{
 		DiagonalDireitaSuperior=-1;
 	}
 	//diagonal inferior esquerda
-	if(mat->Matrizes.mapAux[i+1][j-1]=='#')
+	if(mat->Matrizes.map[i+1][j-1]=='#')
 	{
 		DiagonalEsquerdaInferior=-1;
 	}
 	//diagonal inferior direita
-	if(mat->Matrizes.mapAux[i+1][j+1]=='#')
+	if(mat->Matrizes.map[i+1][j+1]=='#')
 	{
 		DiagonalDireitaInferior=-1;
 	}
