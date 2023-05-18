@@ -30,7 +30,7 @@ Ao sofrer um dano o algoritmo deve demarcar a posição com o item 1, neutraliza
 | Símbolo              | Significado                                                                                                             | 
 | ---------------------| -------------------------------------------------------------------------------------------------                       |
 |  #                   | `Parede`   Não é possível passar por essa casa                                                                          |
-|  *                   | `Perigo`  O caminhamento reinicia ao passar por essa casa e depois essa casa se transforma em '1'                       |
+|  *                   | `Perigo`  O caminhamento reinicia ao passar por essa casa, depois disso essa casa se transforma em '1'                  |
 | 1                    | `passagem livre`   É possível passar por essa casa                                                                      |
 | ?                    | `Objetivo`   O caminhamento finaliza ao passar por essa casa                                                            |
 
