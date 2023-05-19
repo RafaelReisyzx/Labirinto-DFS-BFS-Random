@@ -1,6 +1,11 @@
 
 # Descrição do algoritmo
 
+O algoritmo tem como objetivo explorar um Labirinto, percorrendo suas casas seguindo regras de diferentes formas de caminhamento. O labirinto é representado por uma matriz quadrada, onde cada casa pode conter diferentes tipos de símbolos: '1' para caminhos livres, '#' para paredes ,'*' para perigos e '?' para a casa objetivo. O objetivo do caminhamento é chegar à casa objetivo a partir da casa inicial (canto superior esquerdo).
+O algoritmo é iniciado com a geração ou leitura do labirinto, que é armazenado na estrutura de dados Mapa, contendo a matriz do labirinto e informações sobre seu tamanho. Após isso, o usuário pode escolher entre diferentes opções de caminhamento: Random, Bfs (busca em largura) ou Dfs (busca em profundidade).
+
+No caminhamento aleatório (Random), o algoritmo identifica as direções possíveis de movimento (cima, baixo, esquerda, direita, diagonais) e escolhe aleatoriamente uma direção livre. Depois se move para a casa vizinha na direção escolhida. Esse processo é repetido até que a casa objetivo seja alcançada.
+
 # Como foi desenvolvido
 
 O código foi desenvolvido em linguagem C, utilizando três arquivos: Labirinto.h, Labirinto.c e main.c. O arquivo Labirinto.h contém as definições de structs 
@@ -20,10 +25,17 @@ Ao sofrer um dano o algoritmo deve demarcar a posição com o item 1, neutraliza
 
 # Funções 
 
+A função Initiation é a função principal do programa, responsável por iniciar a execução. Ela exibe um menu com opções para gerar uma nova matriz ou ler uma matriz existente. Em seguida, solicita ao usuário a escolha do algoritmo de caminhamento a ser executado.
+
+A função GenerateMatrix é responsável por gerar uma nova matriz aleatória e salvá-la em um arquivo chamado "input.data". A matriz é preenchida com caracteres que representam as células do labirinto, como '#' para paredes, '1' para caminhos livres, '*' para perigo e uma casa '?' para a objetivo do caminhante. O tamanho da matriz é definido pelo usuário.
+
+A função PrintMatrix é utilizada para exibir a matriz na saída padrão, mostrando a configuração atual do labirinto.
+
+A função ReadMatriz lê uma matriz existente de um arquivo chamado "input.data". A matriz é armazenada na estrutura de dados do programa para ser manipulada posteriormente.
+
+A função Random é o algoritmo de caminhamento aleatório na matriz. Ele inicia na posição inicial do caminhante e realiza movimentos aleatórios em direções possíveis (cima, baixo, esquerda, direita e diagonais) até encontrar a casa objetivo marcada com '?'. Durante o caminhamento, o algoritmo demarca as paredes do labirinto, evitando passar por elas. O número de passos realizados é contado e armazenado na estrutura de dados do programa.
 
 # Funcionamento
-
-
 
 ### Tabela de Símbolos
 
@@ -38,11 +50,13 @@ Ao sofrer um dano o algoritmo deve demarcar a posição com o item 1, neutraliza
 # Exemplo de Entrada
 ![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo1.png)
 
+
 # Exemplo de Saída
 
 
 # Conclusão:
 
+Em relação à eficiência do algoritmo, é importante considerar a análise criteriosa da entrada fornecida de caminhamento em matriz. O algoritmo de caminhamento aleatório tem uma complexidade de tempo e espaço razoável para matrizes de tamanho moderado, uma vez que se faz movimentos aleatórios até encontrar a casa objetivo. No entanto, à medida que o tamanho da matriz aumenta, o tempo de execução também aumenta de forma significativa devido ao número crescente de possíveis caminhos. Além disso, não há garantia de que encontrará a casa objetivo em todos os casos, especialmente em labirintos complexos.
 
 # Compilação e Execução
 
