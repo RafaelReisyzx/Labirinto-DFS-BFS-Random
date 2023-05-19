@@ -55,10 +55,15 @@ O programa inicia solicitando ao usuário que escolha uma das opções disponív
 # Funcionamento Função Random
 
 Ordem de etapas dentro da função Random:
-1. **Verificar casa** Verifica se a casa atual é de passagem livre, perigo ou objetivo.
-2. **Demarcar paredes** Demarca as paredes da casa atual.
-3. **Escolher caminho** Escolhe um caminho possível de caminhar.
-4. **Caminhar** Caminha pela opção escolhida.
+1. **Verificar casa** : Nesta etapa, o algoritmo verifica o tipo de casa em que está atualmente. Existem duas possibilidades:
+
++ Perigo: Se a casa atual for um perigo, o caminhamento é reiniciado e a casa atual se torna uma casa '1' de passagem livre
+
++ Objetivo: Se a casa atual for o objetivo, isso significa que o algoritmo chegou ao destino desejado. Nesse caso, a execução do algoritmo pode é encerrada.
+
+2. **Demarcar paredes**: Após verificar o tipo de casa atual, o algoritmo demarca as paredes da casa. Isso significa que registra as direções que não podem ser seguidas, por causa da presença de casas '#'. 
+3. **Escolher caminho**: Com base nas informações coletadas na etapa anterior, o algoritmo escolhe forma aleatória um caminho possível para prosseguir. Ele seleciona uma direção disponível que não esteja marcada como parede.
+4. **Caminhar**: Nesta etapa, o algoritmo efetivamente caminha pela opção selecionada na etapa anterior.
 
 # Exemplo de Entrada 1
 ![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo1.png)
