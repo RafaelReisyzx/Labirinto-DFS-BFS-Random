@@ -51,8 +51,11 @@ A função Random é o algoritmo de caminhamento aleatório na matriz. Ele inici
 ![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo1.png)
 
 
-# Exemplo de Saída
+# Exemplos de Saída
 
+## Randômico
+
+![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo2.png)
 
 # Conclusão:
 
