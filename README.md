@@ -23,17 +23,22 @@ Ao sofrer um dano o algoritmo deve demarcar a posição com o item 1, neutraliza
 # Discussão
 
 
+Ao lidar com esse algoritmo de caminhamento de matriz, algumas das principais questões que podem surgir incluem:
+
+- Eficiência do algoritmo: Como o algoritmo se comporta em termos de tempo de execução e consumo de recursos, especialmente em labirintos grandes? O algoritmo consegue encontrar o caminho objetivo em um tempo razoável? Como o desempenho do algoritmo é afetado por diferentes tamanhos de labirinto, densidades de obstáculos e configurações específicas?
+- Comportamento em labirintos complexos: Como o algoritmo se comporta em labirintos com múltiplas soluções ou com obstáculos e desvios? Ele é capaz de encontrar diferentes caminhos para o objetivo ou sempre segue o mesmo padrão?
+
 # Funções 
 
-A função Initiation é a função principal do programa, responsável por iniciar a execução. Ela exibe um menu com opções para gerar uma nova matriz ou ler uma matriz existente. Em seguida, solicita ao usuário a escolha do algoritmo de caminhamento a ser executado.
+- Initiation: é a função principal do programa, responsável por iniciar a execução. Ela exibe um menu com opções para gerar uma nova matriz ou ler uma matriz existente. Em seguida, solicita ao usuário a escolha do algoritmo de caminhamento a ser executado.
 
-A função GenerateMatrix é responsável por gerar uma nova matriz aleatória e salvá-la em um arquivo chamado "input.data". A matriz é preenchida com caracteres que representam as células do labirinto, como '#' para paredes, '1' para caminhos livres, '*' para perigo e uma casa '?' para a objetivo do caminhante. O tamanho da matriz é definido pelo usuário.
+- GenerateMatrix: é responsável por gerar uma nova matriz aleatória e salvá-la em um arquivo chamado "input.data". A matriz é preenchida com caracteres que representam as células do labirinto, como '#' para paredes, '1' para caminhos livres, '*' para perigo e uma casa '?' para a objetivo do caminhante. O tamanho da matriz é definido pelo usuário.
 
-A função PrintMatrix é utilizada para exibir a matriz na saída padrão, mostrando a configuração atual do labirinto.
+- PrintMatrix: é utilizada para exibir a matriz na saída padrão, mostrando a configuração atual do labirinto.
 
-A função ReadMatriz lê uma matriz existente de um arquivo chamado "input.data". A matriz é armazenada na estrutura de dados do programa para ser manipulada posteriormente.
+- ReadMatriz: lê uma matriz existente de um arquivo chamado "input.data". A matriz é armazenada na estrutura de dados do programa para ser manipulada posteriormente.
 
-A função Random é o algoritmo de caminhamento aleatório na matriz. Ele inicia na posição inicial do caminhante e realiza movimentos aleatórios em direções possíveis (cima, baixo, esquerda, direita e diagonais) até encontrar a casa objetivo marcada com '?'. Durante o caminhamento, o algoritmo demarca as paredes do labirinto, evitando passar por elas. O número de passos realizados é contado e armazenado na estrutura de dados do programa.
+- Random: é o algoritmo de caminhamento aleatório na matriz. Ele inicia na posição inicial do caminhante e realiza movimentos aleatórios em direções possíveis (cima, baixo, esquerda, direita e diagonais) até encontrar a casa objetivo marcada com '?'. Durante o caminhamento, o algoritmo demarca as paredes do labirinto, evitando passar por elas. O número de passos realizados é contado e armazenado na estrutura de dados do programa.
 
 # Funcionamento
 
@@ -47,11 +52,11 @@ A função Random é o algoritmo de caminhamento aleatório na matriz. Ele inici
 | ?                    | `Objetivo`   O caminhamento finaliza ao passar por essa casa                                                            |
 
 
-# Exemplo de Entrada
+# Exemplo de Entrada 1
 ![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo1.png)
 
 
-# Exemplos de Saída
+# Exemplos de Saída da Entrada 1
 
 ## Randômico
 
@@ -60,7 +65,10 @@ A função Random é o algoritmo de caminhamento aleatório na matriz. Ele inici
 
 # Conclusão:
 
-Em relação à eficiência do algoritmo, é importante considerar a análise criteriosa da entrada fornecida de caminhamento em matriz. O algoritmo de caminhamento aleatório tem uma complexidade de tempo e espaço razoável para matrizes de tamanho moderado, uma vez que se faz movimentos aleatórios até encontrar a casa objetivo. No entanto, à medida que o tamanho da matriz aumenta, o tempo de execução também aumenta de forma significativa devido ao número crescente de possíveis caminhos. Além disso, não há garantia de que encontrará a casa objetivo em todos os casos, especialmente em labirintos complexos.
+# Randômico
+
+- O desempenho do algoritmo de caminhamento aleatório em termos de tempo de execução e consumo de recursos pode variar dependendo do tamanho do labirinto e da densidade de obstáculos. Em labirintos grandes ou com muitos obstáculos, o algoritmo pode levar mais tempo para encontrar o caminho objetivo, pois a probabilidade de escolher uma direção livre diminui. Além disso, o consumo de recursos, como memória, é geralmente baixo, já que o algoritmo não requer armazenamento de estruturas de dados complexas.
+- O algoritmo de caminhamento aleatório pode se comportar de maneira diferente em labirintos com múltiplas soluções ou com obstáculos e desvios. Em labirintos com múltiplas soluções, o algoritmo pode encontrar caminhos diferentes em execuções diferentes, explorando as várias opções disponíveis. No entanto, em labirintos com obstáculos complexos e desvios, o algoritmo pode ter dificuldade em encontrar o caminho objetivo devido à aleatoriedade de suas escolhas.
 
 # Compilação e Execução
 
