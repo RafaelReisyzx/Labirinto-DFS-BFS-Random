@@ -22,8 +22,7 @@ Ao sofrer um dano o algoritmo deve demarcar a posição com o item 1, neutraliza
 
 # Discussão
 
-
-Ao lidar com esse algoritmo de caminhamento de matriz, algumas das principais questões que podem surgir incluem:
+Ao lidar com esse algoritmo, algumas das principais questões que podem surgir incluem:
 
 - Eficiência do algoritmo: Como o algoritmo se comporta em termos de tempo de execução e consumo de recursos, especialmente em labirintos grandes? O algoritmo consegue encontrar o caminho objetivo em um tempo razoável? Como o desempenho do algoritmo é afetado por diferentes tamanhos de labirinto, densidades de obstáculos e configurações específicas?
 - Comportamento em labirintos complexos: Como o algoritmo se comporta em labirintos com múltiplas soluções ou com obstáculos e desvios? Ele é capaz de encontrar diferentes caminhos para o objetivo ou sempre segue o mesmo padrão?
@@ -42,15 +41,24 @@ Ao lidar com esse algoritmo de caminhamento de matriz, algumas das principais qu
 
 # Funcionamento
 
+O programa inicia solicitando ao usuário que escolha uma das opções disponíveis no menu. Caso o usuário escolha a opção 1, o programa gera uma matriz quadrada aleatória e a armazena em um arquivo de texto chamado "input.data". Em seguida, é chamado outro menu contendo as opções de caminhamento de matriz e uma opção de finalização. Caso o usuário escolha a opção 2, o programa lê a matriz presentes no arquivo "input.data" e a armazena em uma estrutura de dados. Novamente, o menu secundário é chamado para o usuário escolher entre as opções de caminhamento.
+
 ### Tabela de Símbolos
 
 | Símbolo              | Significado                                                                                                             | 
 | ---------------------| -------------------------------------------------------------------------------------------------                       |
-|  #                   | `Parede`   Não é possível passar por essa casa                                                                          |
-|  *                   | `Perigo`  O caminhamento reinicia ao passar por essa casa, depois disso essa casa se transforma em '1'                  |
-| 1                    | `passagem livre`   É possível passar por essa casa                                                                      |
+| #                    | `Parede`   Não é possível passar por essa casa                                                                          |
+| *                    | `Perigo`  O caminhamento reinicia ao passar por essa casa, depois disso essa casa se transforma em '1'                  |
+| 1                    | `Passagem Livre`   É possível passar por essa casa                                                                      |
 | ?                    | `Objetivo`   O caminhamento finaliza ao passar por essa casa                                                            |
 
+# Funcionamento Função Random
+
+Ordem de etapas dentro da função Random:
+1. **Verificar casa** Verifica se a casa atual é de passagem livre, perigo ou objetivo.
+2. **Demarcar paredes** Demarca as paredes da casa atual.
+3. **Escolher caminho** Escolhe um caminho possível de caminhar.
+4. **Caminhar** Caminha pela opção escolhida.
 
 # Exemplo de Entrada 1
 ![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo1.png)
@@ -65,7 +73,7 @@ Ao lidar com esse algoritmo de caminhamento de matriz, algumas das principais qu
 
 # Conclusão:
 
-# Randômico
+## Randômico
 
 - O desempenho do algoritmo de caminhamento aleatório em termos de tempo de execução e consumo de recursos pode variar dependendo do tamanho do labirinto e da densidade de obstáculos. Em labirintos grandes ou com muitos obstáculos, o algoritmo pode levar mais tempo para encontrar o caminho objetivo, pois a probabilidade de escolher uma direção livre diminui. Além disso, o consumo de recursos, como memória, é geralmente baixo, já que o algoritmo não requer armazenamento de estruturas de dados complexas.
 - O algoritmo de caminhamento aleatório pode se comportar de maneira diferente em labirintos com múltiplas soluções ou com obstáculos e desvios. Em labirintos com múltiplas soluções, o algoritmo pode encontrar caminhos diferentes em execuções diferentes, explorando as várias opções disponíveis. No entanto, em labirintos com obstáculos complexos e desvios, o algoritmo pode ter dificuldade em encontrar o caminho objetivo devido à aleatoriedade de suas escolhas.
