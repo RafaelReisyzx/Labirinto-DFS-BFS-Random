@@ -1,10 +1,12 @@
 
 # Descrição do algoritmo
 
-O algoritmo tem como objetivo explorar um Labirinto, percorrendo suas casas seguindo regras de diferentes formas de caminhamento. O labirinto é representado por uma matriz quadrada, onde cada casa pode conter diferentes tipos de símbolos: '1' para caminhos livres, '#' para paredes ,'*' para perigos e '?' para a casa objetivo. O objetivo do caminhamento é chegar à casa objetivo a partir da casa inicial (canto superior esquerdo).
+O algoritmo tem como objetivo explorar um Labirinto, percorrendo suas casas seguindo regras de diferentes formas de caminhamento. O labirinto é representado por uma matriz quadrada, onde cada casa pode conter diferentes tipos de símbolos: '1' para caminhos livres, '#' para paredes ,'*' para perigos e '?' para a casa objetivo. O objetivo é chegar à casa "?" a partir da casa inicial (canto superior esquerdo) e depois medir qual foi o tempo de execução para tal busca.
 O algoritmo é iniciado com a geração ou leitura do labirinto, que é armazenado na estrutura de dados Mapa, contendo a matriz do labirinto e informações sobre seu tamanho. Após isso, o usuário pode escolher entre diferentes opções de caminhamento: Random, Bfs (busca em largura) ou Dfs (busca em profundidade).
 
-No caminhamento aleatório (Random), o algoritmo identifica as direções possíveis de movimento (cima, baixo, esquerda, direita, diagonais) e escolhe aleatoriamente uma direção livre. Depois se move para a casa vizinha na direção escolhida. Esse processo é repetido até que a casa objetivo seja alcançada.
+Métodos de Busca:
+
+Random - A busca randômica é um método heurístico que faz escolhas aleatórias para explorar o espaço de busca até que o objetivo seja encontrado. A principal característica desse algoritmo é a falta de uma estratégia direcionada, o que significa que não há garantia de que o objetivo será encontrado ou de que será encontrado em um tempo razoável.
 
 # Como foi desenvolvido
 
@@ -22,9 +24,9 @@ Ao sofrer um dano o algoritmo deve demarcar a posição com o item 1, neutraliza
 
 # Discussão
 
-Ao lidar com esse algoritmo, algumas das principais questões que podem surgir incluem:
+Ao lidar com esse algoritmo, algumas das principais questões que podem surgir são:
 
-- Eficiência do algoritmo: Como o algoritmo se comporta em termos de tempo de execução e consumo de recursos, especialmente em labirintos grandes? O algoritmo consegue encontrar o caminho objetivo em um tempo razoável? Como o desempenho do algoritmo é afetado por diferentes tamanhos de labirinto, densidades de obstáculos e configurações específicas?
+- Eficiência do algoritmo: Como o algoritmo se comporta em termos de tempo de execução, especialmente em labirintos grandes? O algoritmo consegue encontrar o caminho objetivo em um tempo razoável? Como o desempenho do algoritmo é afetado por diferentes tamanhos de labirinto, densidades de obstáculos e configurações específicas?
 - Comportamento em labirintos complexos: Como o algoritmo se comporta em labirintos com múltiplas soluções ou com obstáculos e desvios? Ele é capaz de encontrar diferentes caminhos para o objetivo ou sempre segue o mesmo padrão?
 
 # Funções 
@@ -39,11 +41,19 @@ Ao lidar com esse algoritmo, algumas das principais questões que podem surgir i
 
 - Random: é o algoritmo de caminhamento aleatório na matriz. Ele inicia na posição inicial do caminhante e realiza movimentos aleatórios em direções possíveis (cima, baixo, esquerda, direita e diagonais) até encontrar a casa objetivo marcada com '?'. Durante o caminhamento, o algoritmo demarca as paredes do labirinto, evitando passar por elas. O número de passos realizados é contado e armazenado na estrutura de dados do programa.
 
+Ordem de etapas dentro da função Random:
+1. **Verificar casa** : Nesta etapa, o algoritmo verifica o tipo de casa em que está atualmente. Existem duas possibilidades:
++ Perigo: Se a casa atual for um perigo, o caminhamento é reiniciado e a casa atual se torna uma casa '1' de passagem livre
++ Objetivo: Se a casa atual for o objetivo, isso significa que o algoritmo chegou ao destino desejado. Nesse caso, a execução do algoritmo é encerrada.
+2. **Demarcar paredes**: Após verificar o tipo de casa atual, o algoritmo demarca as paredes da casa. Isso significa que registra as direções que não podem ser seguidas. 
+3. **Escolher caminho**: Com base nas informações coletadas na etapa anterior, o algoritmo escolhe forma aleatória um caminho possível para prosseguir. Ele seleciona uma direção disponível que não esteja marcada como parede.
+4. **Caminhar**: Nesta etapa, o algoritmo efetivamente caminha pela opção selecionada na etapa anterior.
+
 # Funcionamento
 
 O programa inicia solicitando ao usuário que escolha uma das opções disponíveis no menu. Caso o usuário escolha a opção 1, o programa gera uma matriz quadrada aleatória e a armazena em um arquivo de texto chamado "input.data". Em seguida, é chamado outro menu contendo as opções de caminhamento de matriz e uma opção de finalização. Caso o usuário escolha a opção 2, o programa lê a matriz presentes no arquivo "input.data" e a armazena em uma estrutura de dados. Novamente, o menu secundário é chamado para o usuário escolher entre as opções de caminhamento.
 
-### Tabela de Símbolos
+### Tabela de Símbolos do Labirinto
 
 | Símbolo              | Significado                                                                                                             | 
 | ---------------------| -------------------------------------------------------------------------------------------------                       |
@@ -51,19 +61,6 @@ O programa inicia solicitando ao usuário que escolha uma das opções disponív
 | *                    | `Perigo`  O caminhamento reinicia ao passar por essa casa, depois disso essa casa se transforma em '1'                  |
 | 1                    | `Passagem Livre`   É possível passar por essa casa                                                                      |
 | ?                    | `Objetivo`   O caminhamento finaliza ao passar por essa casa                                                            |
-
-# Funcionamento Função Random
-
-Ordem de etapas dentro da função Random:
-1. **Verificar casa** : Nesta etapa, o algoritmo verifica o tipo de casa em que está atualmente. Existem duas possibilidades:
-
-+ Perigo: Se a casa atual for um perigo, o caminhamento é reiniciado e a casa atual se torna uma casa '1' de passagem livre
-
-+ Objetivo: Se a casa atual for o objetivo, isso significa que o algoritmo chegou ao destino desejado. Nesse caso, a execução do algoritmo é encerrada.
-
-2. **Demarcar paredes**: Após verificar o tipo de casa atual, o algoritmo demarca as paredes da casa. Isso significa que registra as direções que não podem ser seguidas. 
-3. **Escolher caminho**: Com base nas informações coletadas na etapa anterior, o algoritmo escolhe forma aleatória um caminho possível para prosseguir. Ele seleciona uma direção disponível que não esteja marcada como parede.
-4. **Caminhar**: Nesta etapa, o algoritmo efetivamente caminha pela opção selecionada na etapa anterior.
 
 # Exemplo de Entrada 1
 ![This is an image](https://github.com/RafaelReisyzx/Labirinto-DFS-BFS-Random/blob/main/imgs/exemplo1.png)
@@ -80,8 +77,9 @@ Ordem de etapas dentro da função Random:
 
 ## Randômico
 
-- O desempenho do algoritmo de caminhamento aleatório em termos de tempo de execução e consumo de recursos pode variar dependendo do tamanho do labirinto e da densidade de obstáculos. Em labirintos grandes ou com muitos obstáculos, o algoritmo pode levar mais tempo para encontrar o caminho objetivo, pois a probabilidade de escolher uma direção livre diminui. Além disso, o consumo de recursos, como memória, é geralmente baixo, já que o algoritmo não requer armazenamento de estruturas de dados complexas.
+- O desempenho do algoritmo de caminhamento aleatório em termos de tempo de execução e consumo de recursos pode variar dependendo do tamanho do labirinto e da densidade de obstáculos. Em labirintos grandes ou com muitos obstáculos, o algoritmo pode levar mais tempo para encontrar o caminho objetivo, pois a probabilidade de escolher uma direção livre diminui.
 - O algoritmo de caminhamento aleatório pode se comportar de maneira diferente em labirintos com múltiplas soluções ou com obstáculos e desvios. Em labirintos com múltiplas soluções, o algoritmo pode encontrar caminhos diferentes em execuções diferentes, explorando as várias opções disponíveis. No entanto, em labirintos com obstáculos complexos e desvios, o algoritmo pode ter dificuldade em encontrar o caminho objetivo devido à aleatoriedade de suas escolhas.
+-Em resumo, O custo da busca randômica depende de vários fatores, como o tamanho do espaço de busca, a localização do estado objetivo e a sorte do algoritmo ao escolher os próximos estados para explorar. Em alguns casos favoráveis, a busca randômica pode encontrar o objetivo rapidamente, enquanto em outros casos pode levar muito tempo ou até mesmo não encontrar o objetivo. O custo da busca randômica é altamente imprevisível e não pode ser expresso em uma análise assintótica.
 
 # Compilação e Execução
 
