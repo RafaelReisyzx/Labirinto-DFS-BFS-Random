@@ -1,4 +1,5 @@
-#include "Labirinto.h"
+#include "Labirinto.hpp"
+#include <iostream>
 
 int main(){
 	
