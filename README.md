@@ -8,9 +8,9 @@ No caminhamento aleatório (Random), o algoritmo identifica as direções possí
 
 # Como foi desenvolvido
 
-O código foi desenvolvido em linguagem C, utilizando três arquivos: Labirinto.h, Labirinto.c e main.c. O arquivo Labirinto.h contém as definições de structs 
-utilizadas para representar as matrizes e o personagem, além das declarações das funções utilizadas no programa. O arquivo Labirinto.c contém as implementações das 
-funções declaradas no arquivo Labirinto.h. Já o arquivo main.c é responsável por chamar a função Initiation() que inicia o programa.
+O código foi desenvolvido em linguagem C++, utilizando três arquivos: Labirinto.hpp, Labirinto.cpp e maicpp. O arquivo Labirinto.hpp contém as definições de structs 
+utilizadas para representar as matrizes e o personagem, além das declarações das funções utilizadas no programa. O arquivo Labirinto.cpp contém as implementações das 
+funções declaradas no arquivo Labirinto.hpp. Já o arquivo main.c é responsável por chamar a função Initiation() que inicia o programa.
 
 # Regras Propostas
 
@@ -59,9 +59,9 @@ Ordem de etapas dentro da função Random:
 
 + Perigo: Se a casa atual for um perigo, o caminhamento é reiniciado e a casa atual se torna uma casa '1' de passagem livre
 
-+ Objetivo: Se a casa atual for o objetivo, isso significa que o algoritmo chegou ao destino desejado. Nesse caso, a execução do algoritmo pode é encerrada.
++ Objetivo: Se a casa atual for o objetivo, isso significa que o algoritmo chegou ao destino desejado. Nesse caso, a execução do algoritmo é encerrada.
 
-2. **Demarcar paredes**: Após verificar o tipo de casa atual, o algoritmo demarca as paredes da casa. Isso significa que registra as direções que não podem ser seguidas, por causa da presença de casas '#'. 
+2. **Demarcar paredes**: Após verificar o tipo de casa atual, o algoritmo demarca as paredes da casa. Isso significa que registra as direções que não podem ser seguidas. 
 3. **Escolher caminho**: Com base nas informações coletadas na etapa anterior, o algoritmo escolhe forma aleatória um caminho possível para prosseguir. Ele seleciona uma direção disponível que não esteja marcada como parede.
 4. **Caminhar**: Nesta etapa, o algoritmo efetivamente caminha pela opção selecionada na etapa anterior.
 
