@@ -1,31 +1,31 @@
 #include "Labirinto.hpp"
 
 int Initiation(Mapa *mat){
-	int n=0,opcao;	
-    cout << "\n******************************************************\n";
-    cout << "-Menu-\n";
-    cout << "1-Gerar nova matriz dentro de um arquivo (input.data)\n";
-    cout << "2-Ler matriz de um arquivo (input.data)\n";
-    cout << "******************************************************\n";
-    cin >> opcao;
-    cout << "\n";
-	if(opcao == 1){
+    int n=0,opcao;	
+        cout << "\n******************************************************\n";
+        cout << "-Menu-\n";
+        cout << "1-Gerar nova matriz dentro de um arquivo (input.data)\n";
+        cout << "2-Ler matriz de um arquivo (input.data)\n";
+        cout << "******************************************************\n";
+        cin >> opcao;
+        cout << "\n";
+    if(opcao == 1){
 	cout << "Digite o tamanho da matriz quadrada: ";
     cin >> n;
 	mat->Matriz.tam=n;
 	GenerateMatrix(mat);
 	PrintMatrix(mat);
     for(;;){
-    cout <<"\nQual Caminhamento de matriz deseja testar?\n";
-    cout << "1-Random\n";
-    cout << "2-Bfs\n";
-    cout << "3-Dfs\n";
-    cout << "4-Sair\n";
-    cin >> opcao;
-    cout << "\n";
+        cout <<"\nQual Caminhamento de matriz deseja testar?\n";
+        cout << "1-Random\n";
+        cout << "2-Bfs\n";
+        cout << "3-Dfs\n";
+        cout << "4-Sair\n";
+        cin >> opcao;
+        cout << "\n";
     if(opcao==1){
         auto start = chrono::high_resolution_clock::now();
-		Random(mat);
+	Random(mat);
         auto end = chrono::high_resolution_clock::now();      
         chrono::duration<double> duration = end - start;
         double seconds = duration.count();
@@ -40,19 +40,19 @@ int Initiation(Mapa *mat){
          }       
     } 
  	}		
-	else if(opcao == 2){			
-       ReadMatrix(mat);		       
+   else if(opcao == 2){			
+        ReadMatrix(mat);		       
     for(;;){
-      cout <<"\nQual Caminhamento de matriz deseja testar?\n";
-      cout << "1-Random\n";
-      cout << "2-Bfs\n";
-      cout << "3-Dfs\n";
-      cout << "4-Sair\n";
-      cin >> opcao;
-      cout << "\n";
+        cout <<"\nQual Caminhamento de matriz deseja testar?\n";
+        cout << "1-Random\n";
+        cout << "2-Bfs\n";
+        cout << "3-Dfs\n";
+        cout << "4-Sair\n";
+        cin >> opcao;
+        cout << "\n";
     if(opcao==1){
         auto start = chrono::high_resolution_clock::now();
-	    Random(mat);
+	Random(mat);
         auto end = chrono::high_resolution_clock::now();      
         chrono::duration<double> duration = end - start;
         double seconds = duration.count();
@@ -71,22 +71,22 @@ int Initiation(Mapa *mat){
 
 int GenerateMatrix(Mapa* mat){
     int i, j, data = 0,Row,Col, ok=0,n=0;
-    remove("dataset/input.data");
-    n=mat->Matriz.tam;
+        remove("dataset/input.data");
+        n=mat->Matriz.tam;
     FILE* f = fopen("dataset/input.data", "a");
     if (f == NULL) {
         cout << "Erro ao abrir o arquivo.\n";
         exit(EXIT_FAILURE);
     }
-    fprintf(f, "%d %d\n", n, n);
+        fprintf(f, "%d %d\n", n, n);
 
      while(ok<1){
     // Gerar posição aleatória para o caractere "?"
-    Row = rand() % n;
-    Col = rand() % n;
-    ok=1;
+        Row = rand() % n;
+        Col = rand() % n;
+        ok=1;
     if (Row == 0 && Col == 0){
-     ok=0;
+        ok=0;
     }
     }  
 
@@ -125,16 +125,16 @@ int GenerateMatrix(Mapa* mat){
 void PrintMatrix(Mapa *mat){
 	int i,j,n;
 	n=mat->Matriz.tam;
-	for(i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
     for(j = 0; j < n; j++){
-		cout <<" "<< mat->Matriz.map[i][j];
+	 cout <<" "<< mat->Matriz.map[i][j];
 	}
-	    cout << "\n";
+	 cout << "\n";
 	}
 }
 
 int ReadMatrix(Mapa *mat){
-	int linhas = 0, colunas = 0 , i, j;
+    int linhas = 0, colunas = 0 , i, j;
     char c;
     FILE *f = fopen("dataset/input.data", "r");
     if (f == NULL){
