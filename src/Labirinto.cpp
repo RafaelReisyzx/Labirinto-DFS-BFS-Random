@@ -298,8 +298,8 @@ int Random(Mapa *mat){
 	
 	for(i = 0; i < n; i++){
 		for(j = 0; j < n; j++){
-			printf("%c ", mat->Matrizes.map[i][j]);
-			 fprintf(g, "%c ", mat->Matrizes.map[i][j]);
+			printf("%c ", mat->Matriz.map[i][j]);
+			 fprintf(g, "%c ", mat->Matriz.map[i][j]);
 		}
 		printf("\n");
 		 fprintf(g, "\n");
