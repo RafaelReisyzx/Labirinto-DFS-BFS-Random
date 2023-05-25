@@ -23,5 +23,6 @@ int GenerateMatrix(Mapa *mat);
 void PrintMatrix(Mapa *mat);
 int ReadMatrix(Mapa *mat);
 int Random(Mapa *mat);
+void Finalization(Mapa *mat);
  
 #endif
