@@ -164,7 +164,8 @@ int ReadMatrix(Mapa *mat){
     return 0; 
 }
 
-int Random(Mapa *mat){    
+int Random(Mapa *mat){
+
 	int i=0,j=0,r=0,data=0,n,Direita=0,Esquerda=0,Baixo=0,Cima=0,DiagonalEsquerdaSuperior=0,DiagonalDireitaSuperior=0,DiagonalEsquerdaInferior=0,DiagonalDireitaInferior=0;   
 	n=mat->Matriz.tam;
 	mat->Matriz.passos=0;
@@ -179,6 +180,7 @@ int Random(Mapa *mat){
     }else if(mat->Matriz.map[i][j]=='?'){	
         cout<<"\nQuantidade de Passos: "<<mat->Matriz.passos;
         cout << "\n";
+	Finalization(mat);
      break;
     }
 	//2° Etapa Demarcar Paredes
@@ -282,7 +284,29 @@ int Random(Mapa *mat){
 
 	return 0;
 		}
+	void Finalization(Mapa *mat)
+{
+	int k,i,j;
+	FILE *g = fopen("dataset/output.data", "a");
+    if (g == NULL) {
+        printf("Erro ao abrir o arquivo para escrita\n");
+        exit(EXIT_FAILURE);
+    }
 	
+	printf("\nMapa Atualizado:\n\n");
+	
+	for(i = 0; i < n; i++){
+		for(j = 0; j < n; j++){
+			printf("%c ", mat->Matrizes.map[i][j]);
+			 fprintf(g, "%c ", mat->Matrizes.map[i][j]);
+		}
+		printf("\n");
+		 fprintf(g, "\n");
+	}
+		
+	
+}
+
 
   
   
