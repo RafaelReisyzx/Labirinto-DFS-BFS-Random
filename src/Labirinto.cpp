@@ -288,7 +288,7 @@ int Random(Mapa *mat){
 {
 	int i,j,n;
 	n=mat->Matriz.tam;;
-	FILE *g = fopen("dataset/output.data", "a");
+	FILE *g = fopen("dataset/outputRandom.data", "a");
     if (g == NULL) {
         printf("Erro ao abrir o arquivo para escrita\n");
         exit(EXIT_FAILURE);
